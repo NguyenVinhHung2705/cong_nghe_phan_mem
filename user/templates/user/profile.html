@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thông tin người dùng</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f8f9fa;
+        }
+        h2 {
+            color: #333;
+        }
+        table {
+            border-collapse: collapse;
+            width: 60%;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px 15px;
+        }
+        th {
+            background-color: #f0f0f0;
+            text-align: left;
+            width: 200px;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #007bff;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>Xin chào, {{ user.username }}!</h2>
+
+    <table>
+        <tr>
+            <th>ID người dùng</th>
+            <td>{{ user.id }}</td>
+        </tr>
+        <tr>
+            <th>Tên đăng nhập</th>
+            <td>{{ user.username }}</td>
+        </tr>
+        <tr>
+            <th>Mật khẩu (demo)</th>
+            <td>{{ user.password }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ user.email }}</td>
+        </tr>
+        <tr>
+            <th>Ngày sinh</th>
+            <td>{{ user.date_of_birth }}</td>
+        </tr>
+        <tr>
+            <th>Ngày tạo</th>
+            <td>{{ user.create_at }}</td>
+        </tr>
+        <tr>
+            <th>Trạng thái online</th>
+            <td>{{ user.online_status }}</td>
+        </tr>
+        <tr>
+            <th>Vai trò</th>
+            <td>{{ user.role }}</td>
+        </tr>
+        <tr>
+            <th>Địa chỉ</th>
+            <td>{{ user.address }}</td>
+        </tr>
+        <tr>
+            <th>Giới tính</th>
+            <td>{{ user.gender }}</td>
+        </tr>
+    </table>
+
+    <a href="/user/logout">Đăng xuất</a>
+    <a href="{% url 'export_profile' user.id %}" target="_blank">
+        <button>Xuất PDF</button>
+    </a>
+</body>
+</html>

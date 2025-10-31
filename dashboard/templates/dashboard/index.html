@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <link rel="stylesheet" href="{%static 'css/dashboard-index.html.css'%}" />
+    <title>Trang chủ</title>
+  </head>
+  <body>
+    <div class="container">
+      {% if request.session.username %}
+      <h1>Chào mừng trở lại!</h1>
+      <p class="welcome">
+        Hế lô <strong>{{ request.session.username }}</strong>
+      </p>
+      <div>
+        <a href="{% url 'profile' %}">Xem hồ sơ</a>
+        <a href="{% url 'logout' %}">Đăng xuất</a>
+      </div>
+      {% else %}
+      <h1>Trang web thương mại điện tử - Demo</h1>
+      <div>
+        <a href="{% url 'login' %}">Đăng nhập</a>
+        <a href="{% url 'register' %}">Đăng ký</a>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
