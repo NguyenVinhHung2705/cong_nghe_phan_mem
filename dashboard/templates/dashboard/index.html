@@ -4,27 +4,66 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% load static %}
-    <link rel="stylesheet" href="{%static 'css/dashboard-index.html.css'%}" />
+    <link rel="stylesheet" href="{% static 'dashboard/css/index.css' %}" />
     <title>Trang chủ</title>
   </head>
   <body>
-    <div class="container">
-      {% if request.session.username %}
-      <h1>Chào mừng trở lại!</h1>
-      <p class="welcome">
-        Hế lô <strong>{{ request.session.username }}</strong>
-      </p>
-      <div>
-        <a href="{% url 'profile' %}">Xem hồ sơ</a>
-        <a href="{% url 'logout' %}">Đăng xuất</a>
+    <!-- HEADER -->
+    <header id="header">
+      <div id="logo">
+        <a href="{% url 'index' %}">
+          <img src="/media/assets/logo.png" alt="Logo" />
+        </a>
       </div>
-      {% else %}
-      <h1>Trang web thương mại điện tử - Demo</h1>
-      <div>
-        <a href="{% url 'login' %}">Đăng nhập</a>
-        <a href="{% url 'register' %}">Đăng ký</a>
-      </div>
-      {% endif %}
+
+      <nav id="nut_chuc_nang">
+        {% if list_session.username %} {% if list_session.role == 'user' %}
+        <a href="{% url 'dang_ky_ban_hang' %}">Đăng ký bán hàng</a>
+        {% else %}
+        <a href="{% url 'khu_vuc_ban_hang' %}">Khu vực bán hàng</a>
+        {% endif %}
+        <a href="{% url 'profile' %}" class="profile-link"
+          >{{ list_session.username }}</a
+        >
+        <a href="{% url 'logout' %}" class="logout">Đăng xuất</a>
+        {% else %}
+        <a href="{% url 'login' %}" class="btn-login">Đăng nhập</a>
+        <a href="{% url 'register' %}" class="btn-register">Đăng ký</a>
+        {% endif %}
+      </nav>
+    </header>
+
+    <!-- THANH TÌM KIẾM -->
+    <div id="thanh_tim_kiem">
+      <input type="text" id="search_bar" placeholder="Tìm kiếm sản phẩm..." />
+      <button id="btn_search">🔍</button>
     </div>
+
+    <!-- DANH SÁCH SẢN PHẨM -->
+    <section id="danh_sach_san_pham">
+      {% for product in products %}
+      <div class="san_pham">
+        <div class="image-box">
+          <img src="{{ product.image.url }}" alt="{{ product.product_name }}" />
+        </div>
+        <h3>{{ product.product_name }}</h3>
+        <p class="price">{{ product.price|floatformat:0 }} ₫</p>
+      </div>
+      {% empty %}
+      <p class="empty">Hiện chưa có sản phẩm nào.</p>
+      {% endfor %}
+    </section>
+
+    <div class="pagination">
+  {% if products.has_previous %}
+    <a href="?page={{ products.previous_page_number }}">← Trước</a>
+  {% endif %}
+
+  <span>Trang {{ products.number }} / {{ products.paginator.num_pages }}</span>
+
+  {% if products.has_next %}
+    <a href="?page={{ products.next_page_number }}">Sau →</a>
+  {% endif %}
+</div>
   </body>
 </html>

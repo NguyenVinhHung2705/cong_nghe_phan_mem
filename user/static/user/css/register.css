@@ -1,0 +1,108 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- Bố cục chia đôi --- */
+.container {
+  display: flex;
+  width: 80%;
+  height: 80vh;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+/* --- PHẦN TRÁI: ẢNH --- */
+.image-side {
+  flex: 1; /* chiếm 50% */
+  background-color: #e0e7ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-side img {
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* --- PHẦN PHẢI: FORM --- */
+#register_form {
+  flex: 1; /* chiếm 50% */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+#register_form img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+#register_form h1 {
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#register_form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 300px;
+}
+
+#register_form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+#register_form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
+}
+
+#register_form input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 6px rgba(74, 144, 226, 0.3);
+}
+
+#register_form button {
+  padding: 10px;
+  background: #4a90e2;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#register_form button:hover {
+  background: #357abd;
+}
+
+#register_form p {
+  text-align: center;
+  margin-top: 10px;
+}

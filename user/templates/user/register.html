@@ -1,35 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load static %}
-    <link rel="stylesheet" href="{%static 'css/user-register.html.css'%}" />
-    <title>Register page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'user/css/register.css' %}" />
+  <title>Register page</title>
 </head>
 <body>
-    <h1>REGISTER</h1>
-    <div id="register_form">
-        <form action="{% url 'register' %}" method="post">
-            {% csrf_token %}
 
-            <label for="username">Username:</label>
-            <input type="text" name="username" required>
-
-            <label for="password">Password:</label>
-            <input type="password" name="password" required>
-
-            <label for="password_again">Password again:</label>
-            <input type="password" name="password_again" required>
-
-            {% if error %}
-                <p style="color:red; text-align: center;">{{ error }}</p>
-            {% endif %}
-
-            <button type="submit">Đăng kí</button>
-
-            <p>Đã có tài khoản? <a href="{% url 'login' %}">Đăng nhập</a></p>
-        </form>
+  <div class="container">
+    <!-- PHẦN TRÁI: HÌNH ẢNH -->
+    <div class="image-side">
+      <img src="/media/assets/register_banner.png" alt="Register Banner">
     </div>
+
+    <!-- PHẦN PHẢI: FORM ĐĂNG KÝ -->
+    <div id="register_form">
+      <img src="/media/assets/logo_dau.png" alt="logo dau">
+      <h1>REGISTER</h1>
+
+      <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+
+        <label for="username">Username:</label>
+        <input type="text" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" required>
+
+        <label for="password_again">Password again:</label>
+        <input type="password" name="password_again" required>
+
+        {% if error %}
+          <p style="color:red; text-align: center;">{{ error }}</p>
+        {% endif %}
+
+        <button type="submit">Đăng kí</button>
+
+        <p>Đã có tài khoản? <a href="{% url 'login' %}">Đăng nhập</a></p>
+      </form>
+    </div>
+  </div>
+
 </body>
 </html>

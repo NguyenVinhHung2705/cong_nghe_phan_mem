@@ -1,0 +1,206 @@
+/* Reset cơ bản */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* NỀN CHUNG */
+body {
+  background-color: #f5f7fa;
+  color: #222;
+}
+
+/* ========== HEADER ========== */
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 60px;
+  background: linear-gradient(135deg, #ffffff, #e8f0ff);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+#logo img {
+  height: 55px;
+  transition: transform 0.3s ease;
+}
+#logo img:hover {
+  transform: scale(1.05);
+}
+
+#nut_chuc_nang a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+#nut_chuc_nang a:hover {
+  color: #007bff;
+}
+
+.btn-login,
+.btn-register {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid #007bff;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+.btn-login {
+  background-color: #fff;
+  color: #007bff;
+}
+.btn-login:hover {
+  background-color: #007bff;
+  color: white;
+}
+.btn-register {
+  background-color: #007bff;
+  color: white;
+}
+.btn-register:hover {
+  background-color: #005fcc;
+}
+
+/* ========== THANH TÌM KIẾM ========== */
+#thanh_tim_kiem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0 25px;
+}
+
+#search_bar {
+  width: 45%;
+  padding: 12px 18px;
+  border-radius: 30px 0 0 30px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+#search_bar:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+}
+
+#btn_search {
+  padding: 12px 22px;
+  border-radius: 0 30px 30px 0;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+#btn_search:hover {
+  background-color: #005fcc;
+}
+
+/* ========== DANH SÁCH SẢN PHẨM ========== */
+#danh_sach_san_pham {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 30px;
+  padding: 40px 80px;
+  justify-items: center;
+}
+
+.san_pham {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 240px;
+  cursor: pointer;
+}
+
+.san_pham:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.15);
+}
+
+/* Ảnh sản phẩm */
+.san_pham .image-box {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background-color: #f0f0f0;
+}
+.san_pham img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.san_pham:hover img {
+  transform: scale(1.07);
+}
+
+/* Tên sản phẩm */
+.san_pham h3 {
+  margin: 14px 0 6px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  padding: 0 10px;
+}
+
+/* Giá sản phẩm */
+.san_pham .price {
+  margin-bottom: 15px;
+  color: #e63946;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Khi không có sản phẩm */
+.empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #777;
+  font-size: 1.1rem;
+  padding: 60px;
+}
+
+/* ========== PHÂN TRANG ========== */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 35px 0 50px;
+  gap: 15px;
+}
+
+.pagination a {
+  text-decoration: none;
+  color: #007bff;
+  border: 1px solid #007bff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.pagination a:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.pagination span {
+  font-weight: 600;
+  color: #333;
+}

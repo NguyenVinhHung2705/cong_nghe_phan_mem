@@ -1,30 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% load static %}
-    <link rel="stylesheet" href="{%static 'css/user-login.html.css'%}" />
-    <title>login page</title>
-  </head>
-  <body>
-    <h1>LOGIN</h1>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'user/css/login.css' %}" />
+  <title>Login page</title>
+</head>
+<body>
+
+  <div class="container">
+    <!-- PHẦN TRÁI: HÌNH ẢNH -->
+    <div class="image-side">
+      <img src="/media/assets/login_banner.png" alt="Login Banner">
+    </div>
+
+    <!-- PHẦN PHẢI: FORM ĐĂNG NHẬP -->
     <div id="login_form">
+      <img src="/media/assets/logo_dau.png" alt="logo dau">
+      <h1>LOGIN</h1>
+
       <form action="{% url 'login' %}" method="post">
         {% csrf_token %}
-        <label for="username">username: </label>
-        <input type="text" name="username" class="login_information" required = "true"/>
 
-        <label for="password">password: </label>
-        <input type="text" name="password" class="login_information" required = "true"/>
+        <label for="username">Username:</label>
+        <input type="text" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" required>
+
         {% if error %}
-        <p style="color: red; text-align: center">{{ error }}</p>
+          <p style="color:red; text-align: center;">{{ error }}</p>
         {% endif %}
 
-        <input type="submit" value="Đăng nhập" />
+        <button type="submit">Đăng nhập</button>
+
         <p>Chưa có tài khoản? <a href="{% url 'register' %}">Đăng kí</a></p>
-        <!-- <p>Quên mật khẩu? <a href="{% url 'forgot_password' %}">Quên mật khẩu</a></p> -->
       </form>
     </div>
-  </body>
+  </div>
+
+</body>
 </html>

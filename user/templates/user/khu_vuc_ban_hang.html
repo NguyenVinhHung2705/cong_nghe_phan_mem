@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý bán hàng</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+        }
+
+        header {
+            background-color: #0a74da;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        #container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Menu bên trái */
+        nav {
+            width: 250px;
+            background-color: #1f2937;
+            color: white;
+            padding-top: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            display: block;
+            transition: background 0.2s;
+        }
+
+        nav a:hover {
+            background-color: #374151;
+        }
+
+        nav .active {
+            background-color: #2563eb;
+        }
+
+        /* Nội dung chính */
+        main {
+            flex: 1;
+            padding: 30px;
+            background-color: #f9fafb;
+            overflow-y: auto;
+        }
+
+        h2 {
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+
+        /* Danh sách sản phẩm */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .product-card h3 {
+            margin: 10px 0;
+            color: #111827;
+        }
+
+        .product-card p {
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+        /* Form thêm sản phẩm */
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        form input, form textarea, form button {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #d1d5db;
+        }
+
+        form button {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Trang quản lý bán hàng</h1>
+    </header>
+
+    <div id="container">
+        <!-- Menu bên trái -->
+        <nav>
+            <a href="#" id="view_products" class="active" onclick="showSection('products')">Xem tất cả sản phẩm</a>
+            <a href="#" id="add_product" onclick="showSection('add')">Thêm sản phẩm</a>
+        </nav>
+
+        <!-- Nội dung -->
+        <main>
+            <!-- Danh sách sản phẩm -->
+            <section id="products_section">
+                <h2>Danh sách sản phẩm đã bán</h2>
+                <div class="product-grid">
+                    {% for product in products %}
+                    <div class="product-card">
+                        <img src="{{ product.image.url }}" alt="{{ product.product_name }}">
+                        <h3>{{ product.product_name }}</h3>
+                        <p>{{ product.price }} ₫</p>
+                    </div>
+                    {% empty %}
+                    <p>Chưa có sản phẩm nào được bán.</p>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <!-- Form thêm sản phẩm -->
+            <section id="add_section" style="display:none;">
+                <h2>Thêm sản phẩm mới</h2>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label>Tên sản phẩm</label>
+                    <input type="text" name="product_name" required>
+
+                    <label>Giá</label>
+                    <input type="number" name="price" required>
+
+                    <label>Ảnh</label>
+                    <input type="file" name="image" accept="image/*" required>
+
+                    <label>Mô tả</label>
+                    <textarea name="description" rows="3"></textarea>
+
+                    <button type="submit">Thêm sản phẩm</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Chuyển đổi giữa hai tab
+        function showSection(section) {
+            const viewBtn = document.getElementById("view_products");
+            const addBtn = document.getElementById("add_product");
+            const products = document.getElementById("products_section");
+            const add = document.getElementById("add_section");
+
+            if (section === "products") {
+                products.style.display = "block";
+                add.style.display = "none";
+                viewBtn.classList.add("active");
+                addBtn.classList.remove("active");
+            } else {
+                products.style.display = "none";
+                add.style.display = "block";
+                addBtn.classList.add("active");
+                viewBtn.classList.remove("active");
+            }
+        }
+    </script>
+</body>
+</html>

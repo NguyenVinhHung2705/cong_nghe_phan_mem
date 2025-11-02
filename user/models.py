@@ -11,18 +11,21 @@ class User(models.Model):
     role = models.CharField(max_length=10, default="user")
     address = models.CharField(max_length=100, null=True, blank=True)
     gender = models.CharField(max_length=10, null=True, blank=True)
-
+    shop_name = models.CharField(max_length=255, default="Chưa đăng kí shop")
+    shop_address = models.CharField(max_length=255, default="Chưa đăng kí shop")
     def __str__(self):
         Id = self.id
         Username = self.username if self.username is not None else "NULL"
         Password = self.password if self.password is not None else "NULL"
-        Email = self.email if self.email is not None else "NULL"
-        Date_of_birth = self.date_of_birth if self.date_of_birth is not None else "NULL"
-        Create_at = self.create_at if self.create_at is not None else "NULL"
-        Online_status = "Đang online" if self.online_status is True else "Đang offline"
-        Role = self.role if self.role is not None else "NULL"
-        Address = self.address if self.address is not None else "NULL"
-        Gender = self.gender if self.gender is not None else "NULL"
+        Email = self.email if self.email is not None else "Trống"
+        Date_of_birth = self.date_of_birth if self.date_of_birth is not None else "Trống"
+        Create_at = self.create_at
+        Online_status = self.online_status
+        Role = self.role
+        Address = self.address if self.address is not None else "Trống"
+        Gender = self.gender if self.gender is not None else "Trống"
+        Shop_name = self.shop_name
+        Shop_address = self.shop_address
 
         return (
             f"id: {Id} | "
@@ -34,5 +37,7 @@ class User(models.Model):
             f"online_status: {Online_status} | "
             f"role: {Role} | "
             f"address: {Address} | "
-            f"gender: {Gender}"
+            f"gender: {Gender} | "
+            f"shop_name: {Shop_name} | "
+            f"shop_address: {Shop_address}"
         )
